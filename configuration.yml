@@ -1,0 +1,36 @@
+# This is an example config
+
+agents:
+
+  # Each agent's <identity>.config file should be in the configs
+  # directory and will be used to install the agent.
+  #
+  # NOTE: these configs will ultimately be stored with the agent source
+  # and *not* in the configuration store. E.g.
+  #
+  # .volttron/agents/9b8c5a9c-2ac9-46c1-8de9-725fc346d01d/
+  #   platform_driveragent-4.0/platform_driveragent-4.0.dist-info/config
+  platform.driver:
+    identity: platform.driver
+    source: ${VOLTTRON_ROOT}/services/core/PlatformDriverAgent
+    config: ${VOLTTRON_CONFIG_DIR}/platform-driver.config
+    tag: driver
+    priority: 20
+    # NOTE: Each config_store entry will be added to the agent's store
+    # file in the configuration store. E.g.
+    #
+    # ${VOLTTRON_HOME}/configuration_store/platform.driver.store
+    config_store:
+      fake.csv:
+        file: ${VOLTTRON_ROOT}/examples/configurations/drivers/fake.csv
+        type: csv
+      devices/fake-campus/fake-building/fake-device:
+        file: ${VOLTTRON_ROOT}/examples/configurations/drivers/fake.config
+
+  listener.agent:
+    identity: listener.agent
+    source: ${VOLTTRON_ROOT}/examples/ListenerAgent
+    config: ${VOLTTRON_CONFIG_DIR}/listener.config
+    tag: listener
+    # NOTE: Not every agent requires config_store entries
+
