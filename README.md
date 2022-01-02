@@ -19,10 +19,40 @@ This implementation _does not support RabbitMQ_ as it was not required by NEV Po
 
 ## Configuration
 
+### Volumes
+
 Volttron configuration is deployed to the Docker image via volume mounts:
 
-- Mount a configuration file (for high-level configuration) at `/home/volttron/configuration.yml`
-- Mount a config volume (for agent and driver config) at `/home/volttron/config`
-- Mount a user_agents volume (for agents not provided with volttron) at `/home/volttron/user_agents`
+- Mount a configuration file (for high-level configuration) at `/home/volttron/volttron/configuration.yml` (based on `configuration.yml.example`)
+- Mount a config volume containing agent and driver config) at `/home/volttron/volttron/config` (based on `config.example`)
+- Mount an agents volume (for any agents not provided with Volttron) at `/home/volttron/volttron/agents`
+- Mount individual driver volumes (for any drivers not provided with Volttron) at `/home/volttron/volttron/services/core/PlatformDriverAgent/platform_driver/interfaces/<driver_name>`
 
-Examples of configuration files are included for reference.
+### Environment
+
+ - `VOLTTRON_CONFIG_DIR` - This is where `configure-volttron.py` will look for Volttron config as mounted using the Volumes above. Unless you have reason to use a different location, set this to `/home/volttron/volttron/config`.
+
+## Deployment
+
+### Docker-compose
+
+An example `docker-compose.yml` is included.
+
+### Updating configuration
+
+While it is possible to add agents, drivers and configuration to a running container, the container created by this image is designed to be ephemeral.
+
+As such when deploying updated agents, drivers and configuration it is usually easiest to simply rebuild the container from scratch:
+
+```
+docker-compose stop volttron
+docker-compose up -d --build --force-recreate volttron
+```
+
+### Logging
+
+The Volttron logfile can be followed via standard Docker logging:
+
+```
+docker-compose logs -f --tail=100 volttron
+```
