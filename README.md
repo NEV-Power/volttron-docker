@@ -1,9 +1,10 @@
 # Volttron Docker
 
-This is a Docker configuration based on the [official Volttron Docker](https://github.com/VOLTTRON/volttron-docker) which at time of development:
+This is a Docker configuration developed by [NEV Power](https://github.com/NEV-Power) based on the [official Volttron Docker](https://github.com/VOLTTRON/volttron-docker) which at time of development:
 
 - Is not compatible with the latest Volttron 8.x
 - Does not make use of the standard `vctl` utility
+- Does not provide a means of installing custom agent dependencies
 
 ## Caveats
 
@@ -17,6 +18,10 @@ As of [December 2021](https://github.com/VOLTTRON/volttron-developer/blob/be3036
 
 This implementation _does not support RabbitMQ_ as it was not required by NEV Power.
 
+### Requirements.txt
+
+This implementation uses a `requirements.txt` file containing dependencies for specific NEV Power dependencies. At present this can only be changed by over-riding `requirements.txt` in this repo. In future it would be potentially possible to either mount `requirements.txt` as a volume or generate it dynamically.
+
 ## Configuration
 
 ### Volumes
@@ -27,6 +32,7 @@ Volttron configuration is deployed to the Docker image via volume mounts:
 - Mount a config volume containing agent and driver config) at `/home/volttron/volttron/config` (based on `config.example`)
 - Mount an agents volume (for any agents not provided with Volttron) at `/home/volttron/volttron/agents`
 - Mount individual driver volumes (for any drivers not provided with Volttron) at `/home/volttron/volttron/services/core/PlatformDriverAgent/platform_driver/interfaces/<driver_name>`
+- Mount a custom 
 
 ### Environment
 

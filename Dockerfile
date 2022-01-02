@@ -38,12 +38,9 @@ ENV PIP_NO_CACHE_DIR=1
 RUN python3 bootstrap.py
 
 # Install additional Python dependencies
+COPY --chown=volttron:volttron requirements.txt ./requirements.txt
 RUN . env/bin/activate
-# TODO: make this externally configurable
-RUN ./env/bin/pip install \
-     psycopg2 \
-     paho-mqtt \
-     minimalmodbus
+RUN ./env/bin/pip install -r requirements.txt
 
 # Entrypoint
 USER root 
