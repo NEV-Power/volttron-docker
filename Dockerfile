@@ -49,6 +49,5 @@ RUN ./env/bin/pip install \
 USER root 
 COPY --chown=volttron:volttron entrypoint.sh ./entrypoint.sh
 COPY --chown=volttron:volttron configure-volttron.py ./configure-volttron.py
-COPY --chown=volttron:volttron configuration.yml ./configuration.yml
 USER $VOLTTRON_USER
 ENTRYPOINT ["./entrypoint.sh"]
