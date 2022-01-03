@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  volttron:
+    build: ./volttron
+    volumes:
+      - ./config/volttron/configuration.yml:/home/volttron/volttron/configuration.yml:ro
+      - ./config/volttron/config:/home/volttron/volttron/config:ro
+      - ./volttron_custom/agents:/home/volttron/volttron/agents:ro
+      - ./volttron_custom/drivers/my_custom_driver:/home/volttron/volttron/services/core/PlatformDriverAgent/platform_driver/interfaces/my_custom_driver:ro
+    environment:
+      - VOLTTRON_CONFIG_DIR=/home/volttron/volttron/config
+      - VOLTTRON_BIND_WEB_ADDRESS=http://0.0.0.0:8000
+    ports:
+      - "8000:8000"

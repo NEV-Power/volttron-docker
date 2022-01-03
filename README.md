@@ -22,6 +22,10 @@ This implementation _does not support RabbitMQ_ as it was not required by NEV Po
 
 This implementation uses a `requirements.txt` file containing dependencies for specific NEV Power dependencies. At present this can only be changed by over-riding `requirements.txt` in this repo. In future it would be potentially possible to either mount `requirements.txt` as a volume or generate it dynamically.
 
+### HTTP/S
+
+While the Volttron platform web service feature can be used by setting `VOLTTRON_BIND_WEB_ADDRESS`, only http is supported. Adding https would require additional work to either generate or add SSL certificates to the image.
+
 ## Configuration
 
 ### Volumes
@@ -37,6 +41,7 @@ Volttron configuration is deployed to the Docker image via volume mounts:
 ### Environment
 
  - `VOLTTRON_CONFIG_DIR` - This is where `configure-volttron.py` will look for Volttron config as mounted using the Volumes above. Unless you have reason to use a different location, set this to `/home/volttron/volttron/config`.
+ - `VOLTTRON_BIND_WEB_ADDRESS` - If using the Volttron web interface set this to the `bind-web-address` as per the Volttron [platform configuration docs](https://volttron.readthedocs.io/en/develop/deploying-volttron/platform-configuration.html#volttron-config-file).
 
 ## Deployment
 

@@ -179,7 +179,7 @@ def main():
     # Load environment variables
     try:
         volttron_home = os.environ["VOLTTRON_HOME"]
-        volttron_config_file = os.environ["VOLTTRON_CONFIG_FILE"]
+        volttron_agent_config_file = os.environ["VOLTTRON_AGENT_CONFIG_FILE"]
     except Exception as e:
         LOGGER.error(f"Unable to load environment: {e}")
         sys.exit(os.EX_CONFIG)
@@ -190,7 +190,7 @@ def main():
     LOGGER.info(f"Volttron started")
     # Load configuration
     try:
-        config = load_config(volttron_config_file)
+        config = load_config(volttron_agent_config_file)
         LOGGER.info(f"Config loaded: {config}")
     except Exception as e:
         LOGGER.error(f"Unable to load configuration: {e}")
