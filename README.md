@@ -12,7 +12,7 @@ This is a Docker configuration developed by [NEV Power](https://github.com/NEV-P
 
 This implementation follows the [official Voltton installation instructions](https://volttron.readthedocs.io/en/main/introduction/platform-install.html) where possible. Some of the idiosyncrasies of this implementation are due to the tightly-coupled nature of the Volttron codebase and the standard Volttron deployment paradigm in which the Volttron virtual environment is managed internally by deployment scripts.
 
-As of [December 2021](https://github.com/VOLTTRON/volttron-developer/blob/be303669d137d3ffc2492c6e01f28e864d4605cd/README.md) the Volttron development team have begun work to decouple the Volttron codebase and move toward a more standard deployment mechanism. When this work is complete it is envisaged that this implementation will need to be thoroughly revisited/refactored.
+As of [January 2022](https://github.com/VOLTTRON/volttron-developer/blob/main/code-modular-white-paper.pdf) the Volttron development team have begun work to decouple the Volttron codebase and move toward a more standard deployment mechanism. When this work is complete it is envisaged that this implementation will need to be thoroughly revisited/refactored.
 
 ### RabbitMQ
 
