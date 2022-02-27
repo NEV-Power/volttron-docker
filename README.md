@@ -42,6 +42,7 @@ Volttron configuration is deployed to the Docker image via volume mounts:
 
  - `VOLTTRON_CONFIG_DIR` - This is where `configure-volttron.py` will look for Volttron config as mounted using the Volumes above. Unless you have reason to use a different location, set this to `/home/volttron/volttron/config`.
  - `VOLTTRON_BIND_WEB_ADDRESS` - If using the Volttron web interface set this to the `bind-web-address` as per the Volttron [platform configuration docs](https://volttron.readthedocs.io/en/develop/deploying-volttron/platform-configuration.html#volttron-config-file).
+ - `VOLTTRON_ARGS` - Arguments passed to the [Volttron Platform Command](https://volttron.readthedocs.io/en/latest/platform-features/control/platform-commands.html?highlight=debug#volttron-platform-command) which invokes Volttron. Default is `-v` for `INFO` level logs. Note that `DEBUG` level logs can be set with `-vv`.
 
 ## Deployment
 

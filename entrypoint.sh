@@ -6,10 +6,6 @@ set -e
 :   ${VOLTTRON_AGENT_CONFIG_FILE:="${VOLTTRON_ROOT}/configuration.yml"}
 :   ${CONFIGURE_VOLTTRON:="./configure-volttron.py"}
 
-# Create and tail log file
-touch $VOLTTRON_LOG_FILE
-tail -F $VOLTTRON_LOG_FILE --max-unchanged-stats=5 &
-
 # Activate Volttron virtual environment
 . ${VOLTTRON_ROOT}/env/bin/activate
 
@@ -28,6 +24,5 @@ if test -n "${VOLTTRON_BIND_WEB_ADDRESS-}"; then
 fi
 
 # Start Volttron
-# NOTE: The examples/rotatinglog.py logging config hard-codes volttron.log
 echo "Starting Volttron with VOLTTRON_HOME=${VOLTTRON_HOME}"
-exec volttron -vv -L examples/rotatinglog.py 
+exec volttron $VOLTTRON_ARGS
